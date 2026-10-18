@@ -34,6 +34,10 @@ export const site = {
     display: '092 077 745',
     href: 'https://wa.me/59892077745?text=Hola%2C%20quisiera%20solicitar%20una%20consulta%20en%20Haskel%20Socolovsky%20Odontolog%C3%ADa.',
   },
+  /** Dentalink online booking. The short link is the one published by the clinic. */
+  booking: {
+    href: 'https://ff.healthatom.io/YUSARc',
+  },
   maps: {
     search:
       'https://www.google.com/maps/search/?api=1&query=Av.%20Sarmiento%202553%2C%20Montevideo',

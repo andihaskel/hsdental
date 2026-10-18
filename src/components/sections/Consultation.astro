@@ -1,6 +1,5 @@
 ---
 import { site } from '../../data/site';
-import ConsultationForm from '../forms/ConsultationForm.astro';
 ---
 
 <section id="consulta" class="on-dark scroll-mt-20 bg-ink text-white" aria-labelledby="consulta-title">
@@ -12,7 +11,7 @@ import ConsultationForm from '../forms/ConsultationForm.astro';
         <span class="text-soft-dark">consulta.</span>
       </h2>
       <p class="mt-8 max-w-sm text-[1.02rem] leading-relaxed text-white/75">
-        Nuestro equipo se comunicará con usted para confirmar el día y el horario más convenientes.
+        Elija un horario en la agenda de la clínica. El turno queda sujeto a confirmación.
       </p>
 
       <ul class="mt-10 border-t border-white/20">
@@ -37,6 +36,21 @@ import ConsultationForm from '../forms/ConsultationForm.astro';
       </ul>
     </div>
 
-    <ConsultationForm />
+    <div class="flex flex-col justify-between border border-white/15 p-5 sm:p-7">
+      <div>
+        <h3 class="text-base font-medium">Reserva de horas</h3>
+        <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/75">
+          La agenda online de la clínica permite elegir día y horario. Si prefiere, también puede escribir por WhatsApp.
+        </p>
+      </div>
+      <div class="mt-8">
+        <a class="btn btn-light" href={site.booking.href} target="_blank" rel="noopener noreferrer">
+          Reservar hora →
+        </a>
+        <p class="mt-4 max-w-sm text-xs leading-relaxed text-white/55">
+          La reserva no confirma el turno por sí sola: la clínica lo valida en la agenda.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
