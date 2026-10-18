@@ -43,8 +43,7 @@ export const site = {
       'https://www.google.com/maps/search/?api=1&query=Av.%20Sarmiento%202553%2C%20Montevideo',
     directions:
       'https://www.google.com/maps/dir/?api=1&destination=Av.%20Sarmiento%202553%2C%20Montevideo',
-    reviews:
-      'https://www.google.com/maps/search/?api=1&query=Haskel%20Socolovsky%20Odontolog%C3%ADa%20Montevideo',
+    reviews: 'https://maps.app.goo.gl/bnn5DmwuzrRA6hSp6',
     embed:
       'https://maps.google.com/maps?q=Av.%20Sarmiento%202553%2C%20Montevideo%2C%20Uruguay&z=16&output=embed',
   },

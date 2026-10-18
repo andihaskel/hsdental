@@ -10,19 +10,27 @@ interface Props {
 const { content = reviewsContent } = Astro.props;
 const verified = content.status === 'verified' && content.reviews.length > 0;
 const visible = verified ? content.reviews.slice(0, 3) : [];
+const { averageRating, reviewCount } = content;
+const aggregateVerified = averageRating !== null && reviewCount !== null;
 
 const ratingLabel =
-  verified && content.averageRating !== null
-    ? content.averageRating.toLocaleString('es-UY', {
+  averageRating !== null && reviewCount !== null
+    ? averageRating.toLocaleString('es-UY', {
         minimumFractionDigits: 1,
         maximumFractionDigits: 1,
       })
-    : '[—,—]';
+    : verified
+      ? String(visible.length)
+      : '[—,—]';
 
 const countLabel =
-  verified && content.reviewCount !== null ? `${content.reviewCount} reseñas` : '[N.º] reseñas';
+  aggregateVerified
+    ? `${reviewCount} reseñas`
+    : verified
+      ? 'reseñas seleccionadas'
+      : '[N.º] reseñas';
 
-const summaryStars = verified && content.averageRating !== null ? Math.round(content.averageRating) : 0;
+const summaryStars = averageRating !== null && reviewCount !== null ? Math.round(averageRating) : 0;
 
 const formatDate = (iso: string) => {
   const date = new Date(iso);
