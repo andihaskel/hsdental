@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+import { facilityLead, facilityRow } from '../../data/facilities';
+import { site } from '../../data/site';
+import clinica from '../../assets/images/clinica.jpg';
+import consultorio from '../../assets/images/consultorio.jpg';
+import esterilizacion from '../../assets/images/esterilizacion.jpg';
+import PendingBadge from '../ui/PendingBadge.astro';
+
+const tones = {
+  'slate-light': 'bg-slate-light',
+  mist: 'bg-mist',
+  slate: 'bg-slate',
+  gray: 'bg-gray-deep',
+} as const;
+---
+
+<section id="instalaciones" class="scroll-mt-20 bg-paper" aria-labelledby="instalaciones-title">
+  <div class="site-container py-20 lg:py-28">
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.85fr)] lg:items-end lg:gap-x-12">
+      <div>
+        <p class="eyebrow">05 — Instalaciones</p>
+        <h2 id="instalaciones-title" class="section-title mt-4">
+          Instalaciones y <span class="text-soft">tecnología.</span>
+        </h2>
+      </div>
+      <p class="text-sm leading-relaxed text-muted">
+        Espacios luminosos y equipamiento actualizado, al servicio de un diagnóstico preciso y una atención confortable.
+        {
+          site.equipmentConfirmed ? null : (
+            <PendingBadge class="ml-2 align-middle">Equipamiento a confirmar</PendingBadge>
+          )
+        }
+      </p>
+    </div>
+
+    <div class="mt-12 grid items-end gap-4 lg:grid-cols-12 lg:gap-5">
+      <figure class="relative aspect-[5/4] overflow-hidden bg-slate-light lg:col-span-7">
+        <Image
+          src={clinica}
+          alt={`Fachada de ${site.name}, el edificio blanco en la esquina de ${site.address.line}`}
+          widths={[480, 720, 819]}
+          sizes="(min-width: 1024px) 55vw, 100vw"
+          loading="lazy"
+          class="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <figcaption class="absolute bottom-3 left-3 bg-white/85 px-2 py-1 text-[0.62rem] font-medium uppercase tracking-[0.14em] text-ink">
+          {facilityLead[0].label}
+        </figcaption>
+      </figure>
+      <figure class="relative aspect-[4/3] overflow-hidden bg-mist lg:col-span-5">
+        <Image
+          src={consultorio}
+          alt="Odontóloga explicando un tratamiento a un paciente en el consultorio"
+          widths={[400, 600, 818]}
+          sizes="(min-width: 1024px) 38vw, 100vw"
+          loading="lazy"
+          class="absolute inset-0 h-full w-full object-cover object-[center_42%]"
+        />
+        <figcaption class="absolute bottom-3 left-3 bg-white/85 px-2 py-1 text-[0.62rem] font-medium uppercase tracking-[0.14em] text-ink">
+          {facilityLead[1].label}
+        </figcaption>
+      </figure>
+    </div>
+
+    <ul class="mt-4 grid gap-4 sm:grid-cols-3 lg:mt-5 lg:gap-5">
+      {
+        facilityRow.map((image) => (
+          <li>
+            {image.id === 'esterilizacion' ? (
+              <figure class="relative aspect-[5/4] overflow-hidden bg-slate-light">
+                <Image
+                  src={esterilizacion}
+                  alt="Preparación del instrumental sobre una bandeja, en el área de esterilización"
+                  widths={[360, 540, 819]}
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  loading="lazy"
+                  class="absolute inset-0 h-full w-full object-cover object-[center_18%]"
+                />
+                <figcaption class="absolute bottom-3 left-3 bg-white/85 px-2 py-1 text-[0.62rem] font-medium uppercase tracking-[0.14em] text-ink">
+                  {image.label}
+                </figcaption>
+              </figure>
+            ) : (
+              <figure class:list={['relative aspect-[5/4]', tones[image.tone]]} role="img" aria-label={`${image.label}. Fotografía pendiente.`}>
+                <figcaption class="absolute bottom-3 left-3 right-3 text-[0.62rem] font-medium uppercase tracking-[0.14em] text-ink/70">
+                  {image.label}
+                </figcaption>
+              </figure>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

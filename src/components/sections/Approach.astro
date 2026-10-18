@@ -1,0 +1,48 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Evaluación',
+    text: 'Escuchamos su consulta, revisamos su historia clínica y realizamos un diagnóstico completo antes de proponer cualquier tratamiento.',
+  },
+  {
+    number: '02',
+    title: 'Plan de tratamiento',
+    text: 'Le presentamos las alternativas, con sus tiempos y costos estimados, para que pueda tomar una decisión informada.',
+  },
+  {
+    number: '03',
+    title: 'Seguimiento',
+    text: 'Acompañamos cada etapa del tratamiento y programamos los controles necesarios para mantener los resultados en el tiempo.',
+  },
+];
+---
+
+<section id="enfoque" class="on-dark scroll-mt-20 bg-ink text-white" aria-labelledby="enfoque-title">
+  <div class="site-container py-20 lg:py-28">
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.75fr)] lg:items-end lg:gap-x-12">
+      <div>
+        <p class="eyebrow text-white/55">03 — Nuestro enfoque</p>
+        <h2 id="enfoque-title" class="section-title mt-5">
+          Un método de trabajo claro,<br />
+          <span class="text-soft-dark">desde la primera consulta.</span>
+        </h2>
+      </div>
+      <p class="text-sm leading-relaxed text-white/70 lg:pb-2">
+        Cada paciente conoce en todo momento en qué etapa se encuentra su tratamiento y cuáles son los próximos pasos.
+      </p>
+    </div>
+
+    <ol class="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-3 lg:gap-10">
+      {
+        steps.map((step) => (
+          <li class="border-t border-white/20 pt-6">
+            <p class="text-[4.25rem] font-medium leading-none tracking-tight text-slate">{step.number}</p>
+            <h3 class="mt-8 text-lg font-semibold">{step.title}</h3>
+            <p class="mt-3 max-w-sm text-sm leading-relaxed text-white/70">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

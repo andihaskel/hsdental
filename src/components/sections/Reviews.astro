@@ -1,0 +1,110 @@
+---
+import { reviewsContent, type ReviewsContent } from '../../data/reviews';
+import Icon from '../ui/Icon.astro';
+import PendingBadge from '../ui/PendingBadge.astro';
+
+interface Props {
+  content?: ReviewsContent;
+}
+
+const { content = reviewsContent } = Astro.props;
+const verified = content.status === 'verified' && content.reviews.length > 0;
+const visible = verified ? content.reviews.slice(0, 3) : [];
+
+const ratingLabel =
+  verified && content.averageRating !== null
+    ? content.averageRating.toLocaleString('es-UY', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      })
+    : '[—,—]';
+
+const countLabel =
+  verified && content.reviewCount !== null ? `${content.reviewCount} reseñas` : '[N.º] reseñas';
+
+const summaryStars = verified && content.averageRating !== null ? Math.round(content.averageRating) : 0;
+
+const formatDate = (iso: string) => {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return iso;
+  return date.toLocaleDateString('es-UY', { day: 'numeric', month: 'short', year: 'numeric' });
+};
+
+const placeholders = [0, 1, 2];
+---
+
+<section id="resenas" class="scroll-mt-20 bg-white" aria-labelledby="resenas-title">
+  <div class="site-container py-20 lg:py-28">
+    <div class="grid items-end gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.85fr)] lg:gap-x-12">
+      <div>
+        <p class="eyebrow">06 — Reseñas</p>
+        <h2 id="resenas-title" class="section-title mt-4">La experiencia de nuestros pacientes.</h2>
+      </div>
+      <div class="border border-line p-5">
+        <p class="eyebrow">Reseñas en Google</p>
+        <div class="mt-3 flex flex-wrap items-end gap-x-4 gap-y-2">
+          <p class="text-4xl font-medium leading-none tracking-tight">{ratingLabel}</p>
+          <p class="pb-1 text-sm text-muted">{countLabel}</p>
+          <p class="ml-auto flex gap-1 pb-1 text-muted" aria-hidden="true">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Icon name="star" filled={star <= summaryStars} class="size-3.5" />
+            ))}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {
+      verified ? null : (
+        <PendingBadge class="mt-8">
+          Datos y reseñas reales de Google pendientes · No se muestran valores inventados
+        </PendingBadge>
+      )
+    }
+
+    <ul class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {
+        verified
+          ? visible.map((review) => (
+              <li class="flex min-h-52 flex-col border border-line p-5">
+                <p class="flex gap-1 text-ink" aria-label={`${review.rating} de 5`}>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Icon name="star" filled={star <= review.rating} class="size-3.5" />
+                  ))}
+                </p>
+                <blockquote class="mt-4 flex-1 text-sm leading-relaxed text-body">
+                  <p>{review.text}</p>
+                </blockquote>
+                <footer class="mt-6 flex items-center justify-between gap-3 border-t border-line pt-3 text-sm">
+                  <cite class="not-italic font-medium">{review.author}</cite>
+                  <span class="text-muted">Google · {formatDate(review.date)}</span>
+                </footer>
+              </li>
+            ))
+          : placeholders.map(() => (
+              <li class="flex min-h-52 flex-col border border-line p-5">
+                <p class="flex gap-1 text-line-strong" aria-hidden="true">
+                  {[1, 2, 3, 4, 5].map(() => (
+                    <Icon name="star" class="size-3.5" />
+                  ))}
+                </p>
+                <p class="mt-4 text-sm leading-relaxed text-muted">
+                  [Texto de la reseña tal como figura en el perfil de Google de la clínica.]
+                </p>
+                <p class="mt-auto flex items-center justify-between gap-3 border-t border-line pt-3 text-sm">
+                  <span>[Nombre del autor]</span>
+                  <span class="text-muted">Google · [fecha]</span>
+                </p>
+              </li>
+            ))
+      }
+    </ul>
+
+    <div class="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+      <a class="text-link text-sm" href={content.googleReviewsUrl} target="_blank" rel="noopener noreferrer">
+        Ver todas las reseñas en Google →
+      </a>
+      <a href="#consulta" class="btn btn-solid">Agendar consulta →</a>
+    </div>
+  </div>
+</section>

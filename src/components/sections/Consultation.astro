@@ -1,0 +1,42 @@
+---
+import { site } from '../../data/site';
+import ConsultationForm from '../forms/ConsultationForm.astro';
+---
+
+<section id="consulta" class="on-dark scroll-mt-20 bg-ink text-white" aria-labelledby="consulta-title">
+  <div class="site-container grid gap-12 py-20 lg:grid-cols-2 lg:gap-16 lg:py-28">
+    <div>
+      <p class="eyebrow text-white/55">07 — Agendar consulta</p>
+      <h2 id="consulta-title" class="mt-5 text-[clamp(2.6rem,4.4vw,4.3rem)] font-medium leading-[0.98] tracking-[-0.035em]">
+        Coordine su<br />primera<br />
+        <span class="text-soft-dark">consulta.</span>
+      </h2>
+      <p class="mt-8 max-w-sm text-[1.02rem] leading-relaxed text-white/75">
+        Nuestro equipo se comunicará con usted para confirmar el día y el horario más convenientes.
+      </p>
+
+      <ul class="mt-10 border-t border-white/20">
+        <li class="flex items-center justify-between gap-4 border-b border-white/20 py-4 text-sm">
+          <span>WhatsApp</span>
+          <a class="underline underline-offset-4" href={site.whatsapp.href} target="_blank" rel="noopener noreferrer">
+            {site.whatsapp.display} →
+          </a>
+        </li>
+        <li class="flex items-center justify-between gap-4 border-b border-white/20 py-4 text-sm">
+          <span>Teléfono</span>
+          <span class="text-right">
+            <a class="underline underline-offset-4" href={site.phones[0].href}>{site.phones[0].display}</a>
+            <span aria-hidden="true"> · </span>
+            <a class="underline underline-offset-4" href={site.phones[1].href}>{site.phones[1].display}</a>
+          </span>
+        </li>
+        <li class="flex items-center justify-between gap-4 border-b border-white/20 py-4 text-sm">
+          <span>Correo</span>
+          <a class="underline underline-offset-4" href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+      </ul>
+    </div>
+
+    <ConsultationForm />
+  </div>
+</section>

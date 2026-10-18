@@ -1,0 +1,56 @@
+---
+import { site } from '../../data/site';
+import { team } from '../../data/team';
+import PendingBadge from '../ui/PendingBadge.astro';
+
+const tones = {
+  gray: 'bg-gray-block',
+  'gray-deep': 'bg-gray-deep',
+  mist: 'bg-[#e8e8e8]',
+} as const;
+---
+
+<section id="equipo" class="scroll-mt-20 bg-white" aria-labelledby="equipo-title">
+  <div class="site-container py-20 lg:py-28">
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.8fr)] lg:items-start lg:gap-x-12">
+      <div>
+        <p class="eyebrow">04 — Equipo profesional</p>
+        <h2 id="equipo-title" class="section-title mt-4">
+          Profesionales con formación<br />
+          <span class="text-soft">especializada.</span>
+        </h2>
+      </div>
+      <div class="lg:pt-9">
+        <p class="text-sm leading-relaxed text-muted">
+          Cada área está a cargo de un especialista, en coordinación permanente con el resto del equipo.
+        </p>
+        {
+          site.biographiesAreExamples ? (
+            <PendingBadge class="mt-4">Reseñas biográficas de ejemplo</PendingBadge>
+          ) : null
+        }
+      </div>
+    </div>
+
+    <ul class="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+      {
+        team.map((person, index) => (
+          <li class:list={[index % 3 === 1 && 'lg:mt-24']}>
+            <article>
+              <div class:list={['relative aspect-[4/5]', tones[person.tone]]} role="img" aria-label={`${person.portraitLabel}. Fotografía pendiente.`}>
+                <span class="absolute bottom-3 left-3 text-[0.62rem] font-medium uppercase tracking-[0.14em] text-ink/60">
+                  {person.portraitLabel}
+                </span>
+              </div>
+              <div class="mt-4 border-t border-line-strong pt-4">
+                <p class="text-[0.68rem] font-medium uppercase tracking-[0.14em] text-muted">{person.specialty}</p>
+                <h3 class="mt-2 text-xl font-semibold tracking-tight">{person.name}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-body">{person.biography}</p>
+              </div>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
