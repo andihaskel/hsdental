@@ -5,7 +5,6 @@ import { site } from '../../data/site';
 import clinica from '../../assets/images/clinica.jpg';
 import consultorio from '../../assets/images/consultorio.jpg';
 import esterilizacion from '../../assets/images/esterilizacion.jpg';
-import PendingBadge from '../ui/PendingBadge.astro';
 
 const tones = {
   'slate-light': 'bg-slate-light',
@@ -19,18 +18,13 @@ const tones = {
   <div class="site-container py-20 lg:py-28">
     <div class="grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.85fr)] lg:items-end lg:gap-x-12">
       <div>
-        <p class="eyebrow">05 — Instalaciones</p>
+        <p class="eyebrow">04 — Instalaciones</p>
         <h2 id="instalaciones-title" class="section-title mt-4">
           Instalaciones y <span class="text-soft">tecnología.</span>
         </h2>
       </div>
       <p class="text-sm leading-relaxed text-muted">
         Espacios luminosos y equipamiento actualizado, al servicio de un diagnóstico preciso y una atención confortable.
-        {
-          site.equipmentConfirmed ? null : (
-            <PendingBadge class="ml-2 align-middle">Equipamiento a confirmar</PendingBadge>
-          )
-        }
       </p>
     </div>
 

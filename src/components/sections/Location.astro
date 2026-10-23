@@ -1,12 +1,11 @@
 ---
 import { site } from '../../data/site';
-import PendingBadge from '../ui/PendingBadge.astro';
 ---
 
 <section id="contacto" class="scroll-mt-20 bg-white" aria-labelledby="contacto-title">
   <div class="site-container grid gap-10 py-20 lg:grid-cols-2 lg:gap-16 lg:py-28">
     <div>
-      <p class="eyebrow">08 — Contacto y ubicación</p>
+      <p class="eyebrow">07 — Contacto y ubicación</p>
       <h2 id="contacto-title" class="section-title mt-4">
         {site.address.street},<br />{site.address.city}.
       </h2>
@@ -16,7 +15,6 @@ import PendingBadge from '../ui/PendingBadge.astro';
           <div>
             <p class="text-xs text-muted">Horario</p>
             <p class="mt-2 text-sm font-medium">{site.hours.summary}</p>
-            {site.hours.confirmed ? null : <PendingBadge class="mt-3">Días a confirmar</PendingBadge>}
           </div>
           <div>
             <p class="text-xs text-muted">Teléfonos</p>

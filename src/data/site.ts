@@ -1,7 +1,5 @@
 /**
  * Clinic facts taken from the design reference.
- * Fields marked `confirmed: false` are visible in the layout exactly as
- * designed, but must not be treated as verified clinic data.
  */
 
 export const site = {
@@ -48,23 +46,13 @@ export const site = {
       'https://maps.google.com/maps?q=Av.%20Sarmiento%202553%2C%20Montevideo%2C%20Uruguay&z=16&output=embed',
   },
   hours: {
-    /** PENDING CONFIRMATION — the reference labels the days as "DÍAS A CONFIRMAR". */
-    confirmed: false,
     summary: 'Lunes a viernes, 9 a 20 h',
     days: 'Lunes a viernes',
     time: '9 a 20 h',
   },
-  /**
-   * PENDING CONFIRMATION — shown as "[—]" and "A COMPLETAR".
-   * Set a number only after the clinic confirms the years in practice.
-   */
-  yearsOfExperience: null as number | null,
-  /** PENDING CONFIRMATION — facility copy references equipment still to be confirmed. */
-  equipmentConfirmed: false,
 } as const;
 
 export const nav = [
-  { label: 'La clínica', href: '#clinica' },
   { label: 'Tratamientos', href: '#tratamientos' },
   { label: 'Equipo', href: '#equipo' },
   { label: 'Reseñas', href: '#resenas' },

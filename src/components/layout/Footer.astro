@@ -1,87 +1,51 @@
 ---
 import { site } from '../../data/site';
 
-const primary = [
-  { label: 'La clínica', href: '#clinica' },
+const links = [
   { label: 'Tratamientos', href: '#tratamientos' },
   { label: 'Equipo', href: '#equipo' },
-];
-
-const secondary = [
   { label: 'Reseñas', href: '#resenas' },
   { label: 'Contacto', href: '#contacto' },
 ];
 ---
 
 <footer class="bg-paper text-ink">
-  <div class="site-container grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:py-20">
+  <div class="site-container flex flex-col gap-10 py-14 lg:flex-row lg:items-end lg:justify-between lg:py-16">
     <div>
       <p class="text-[0.8rem] font-medium tracking-[0.2em]">HASKEL SOCOLOVSKY</p>
       <p class="mt-1 text-[0.58rem] tracking-[0.28em] text-muted">ODONTOLOGÍA</p>
-      <p class="mt-6 max-w-xs text-sm leading-relaxed text-body">
-        Odontología integral basada en la evidencia, con atención personalizada en cada etapa del tratamiento.
-      </p>
+      <nav aria-label="Pie de página" class="mt-6">
+        <ul class="flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem]">
+          {links.map((item) => (
+            <li><a href={item.href} class="hover:opacity-60">{item.label}</a></li>
+          ))}
+        </ul>
+      </nav>
     </div>
 
-    <nav aria-label="Pie de página">
-      <p class="eyebrow">Navegación</p>
-      <ul class="mt-4 space-y-2.5 text-[0.95rem]">
-        {primary.map((item) => (
-          <li><a href={item.href} class="hover:opacity-60">{item.label}</a></li>
-        ))}
-      </ul>
-    </nav>
-
-    <div>
-      <p class="eyebrow">Horario</p>
-      <p class="mt-4 text-[0.95rem]">{site.hours.days}</p>
-      <p class="text-[0.95rem]">{site.hours.time}</p>
-    </div>
-
-    <div>
-      <p class="eyebrow">Contacto</p>
-      <address class="mt-4 space-y-1.5 text-[0.95rem] not-italic">
-        <p>{site.address.line}</p>
-        <p>
-          <a class="underline decoration-line underline-offset-4" href={site.phones[0].href}>{site.phones[0].display}</a>
-          <span aria-hidden="true"> · </span>
-          <a class="underline decoration-line underline-offset-4" href={site.phones[1].href}>{site.phones[1].display}</a>
-        </p>
-        <p>
-          <a class="hover:opacity-60" href={site.whatsapp.href} target="_blank" rel="noopener noreferrer">
-            WhatsApp {site.whatsapp.display}
+    <div class="flex flex-col items-start gap-4">
+      <a href="#consulta" class="btn btn-solid">Agendar consulta</a>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+        <li>
+          <a class="underline underline-offset-4" href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+        <li>
+          <a class="hover:opacity-60" href={site.instagram.url} target="_blank" rel="noopener noreferrer">
+            Instagram {site.instagram.handle}
           </a>
-        </p>
-      </address>
+        </li>
+        <li>
+          <a class="underline underline-offset-4" href={site.maps.search} target="_blank" rel="noopener noreferrer">
+            Google Maps
+          </a>
+        </li>
+      </ul>
     </div>
-  </div>
-
-  <div class="site-container grid items-center gap-8 pb-12 sm:grid-cols-2 lg:grid-cols-4">
-    <a href="#consulta" class="btn btn-solid w-fit">Agendar consulta</a>
-    <ul class="space-y-2.5 text-[0.95rem] lg:col-start-2">
-      {secondary.map((item) => (
-        <li><a href={item.href} class="hover:opacity-60">{item.label}</a></li>
-      ))}
-    </ul>
-    <ul class="space-y-2.5 text-[0.95rem] sm:col-span-2 lg:col-span-1 lg:col-start-4">
-      <li><a class="underline underline-offset-4" href={`mailto:${site.email}`}>{site.email}</a></li>
-      <li>
-        <a class="hover:opacity-60" href={site.instagram.url} target="_blank" rel="noopener noreferrer">
-          Instagram {site.instagram.handle}
-        </a>
-      </li>
-      <li>
-        <a class="underline underline-offset-4" href={site.maps.search} target="_blank" rel="noopener noreferrer">
-          Google Maps
-        </a>
-      </li>
-    </ul>
   </div>
 
   <div class="border-t border-line-strong/80">
-    <div class="site-container flex flex-col gap-3 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+    <div class="site-container py-5 text-xs text-muted">
       <p>© {new Date().getFullYear()} {site.name}</p>
-      <p>Los contenidos señalados con etiqueta punteada están pendientes de confirmación.</p>
     </div>
   </div>
 </footer>
