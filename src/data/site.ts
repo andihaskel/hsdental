@@ -61,8 +61,6 @@ export const site = {
   yearsOfExperience: null as number | null,
   /** PENDING CONFIRMATION — facility copy references equipment still to be confirmed. */
   equipmentConfirmed: false,
-  /** PENDING CONFIRMATION — biographies in the reference are marked as examples. */
-  biographiesAreExamples: true,
 } as const;
 
 export const nav = [

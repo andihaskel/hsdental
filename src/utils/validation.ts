@@ -1,7 +1,6 @@
 export const consultationReasons = [
   'Primera consulta',
   'Odontología general',
-  'Estética dental',
   'Ortodoncia',
   'Implantes dentales',
   'Blanqueamiento',

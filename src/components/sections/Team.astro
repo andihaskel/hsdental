@@ -1,35 +1,31 @@
 ---
-import { site } from '../../data/site';
+import { Image } from 'astro:assets';
 import { team } from '../../data/team';
-import PendingBadge from '../ui/PendingBadge.astro';
+import carlos from '../../assets/images/carlos-haskel.jpg';
+import beatriz from '../../assets/images/beatriz-socolovsky.jpg';
+import denise from '../../assets/images/denise-haskel.jpg';
+import adriana from '../../assets/images/adriana-gaspar.jpg';
+import stephanie from '../../assets/images/stephanie-ramos.jpg';
+import ramiro from '../../assets/images/ramiro-betancor.jpg';
 
-const tones = {
-  gray: 'bg-gray-block',
-  'gray-deep': 'bg-gray-deep',
-  mist: 'bg-[#e8e8e8]',
+const portraits = {
+  'carlos-haskel': carlos,
+  'beatriz-socolovsky': beatriz,
+  'denise-haskel': denise,
+  'adriana-gaspar': adriana,
+  'stephanie-ramos': stephanie,
+  'ramiro-betancor': ramiro,
 } as const;
 ---
 
 <section id="equipo" class="scroll-mt-20 bg-white" aria-labelledby="equipo-title">
   <div class="site-container py-20 lg:py-28">
-    <div class="grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.8fr)] lg:items-start lg:gap-x-12">
-      <div>
-        <p class="eyebrow">04 — Equipo profesional</p>
-        <h2 id="equipo-title" class="section-title mt-4">
-          Profesionales con formación<br />
-          <span class="text-soft">especializada.</span>
-        </h2>
-      </div>
-      <div class="lg:pt-9">
-        <p class="text-sm leading-relaxed text-muted">
-          Cada área está a cargo de un especialista, en coordinación permanente con el resto del equipo.
-        </p>
-        {
-          site.biographiesAreExamples ? (
-            <PendingBadge class="mt-4">Reseñas biográficas de ejemplo</PendingBadge>
-          ) : null
-        }
-      </div>
+    <div>
+      <p class="eyebrow">04 — Equipo profesional</p>
+      <h2 id="equipo-title" class="section-title mt-4">
+        Profesionales con formación<br />
+        <span class="text-soft">especializada.</span>
+      </h2>
     </div>
 
     <ul class="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
@@ -37,11 +33,16 @@ const tones = {
         team.map((person, index) => (
           <li class:list={[index % 3 === 1 && 'lg:mt-24']}>
             <article>
-              <div class:list={['relative aspect-[4/5]', tones[person.tone]]} role="img" aria-label={`${person.portraitLabel}. Fotografía pendiente.`}>
-                <span class="absolute bottom-3 left-3 text-[0.62rem] font-medium uppercase tracking-[0.14em] text-ink/60">
-                  {person.portraitLabel}
-                </span>
-              </div>
+              <figure class="relative aspect-[4/5] overflow-hidden bg-ink">
+                <Image
+                  src={portraits[person.id as keyof typeof portraits]}
+                  alt={`Retrato de ${person.name}`}
+                  widths={[320, 480, 640]}
+                  sizes="(min-width: 1024px) 28vw, (min-width: 768px) 45vw, 100vw"
+                  loading="lazy"
+                  class="absolute inset-0 h-full w-full object-cover object-center"
+                />
+              </figure>
               <div class="mt-4 border-t border-line-strong pt-4">
                 <p class="text-[0.68rem] font-medium uppercase tracking-[0.14em] text-muted">{person.specialty}</p>
                 <h3 class="mt-2 text-xl font-semibold tracking-tight">{person.name}</h3>

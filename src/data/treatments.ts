@@ -16,16 +16,8 @@ export const treatments: Treatment[] = [
     reason: 'Odontología general',
   },
   {
-    id: 'estetica-dental',
-    number: '02',
-    name: 'Estética dental',
-    description:
-      'Mejoras en la forma y el color de los dientes, con resultados naturales y en armonía con el rostro.',
-    reason: 'Estética dental',
-  },
-  {
     id: 'ortodoncia',
-    number: '03',
+    number: '02',
     name: 'Ortodoncia',
     description:
       'Corrección de la posición dental en niños, adolescentes y adultos, mediante alineadores o brackets.',
@@ -33,14 +25,14 @@ export const treatments: Treatment[] = [
   },
   {
     id: 'implantes-dentales',
-    number: '04',
+    number: '03',
     name: 'Implantes dentales',
     description: 'Reposición de piezas perdidas con una planificación previa detallada.',
     reason: 'Implantes dentales',
   },
   {
     id: 'blanqueamiento',
-    number: '05',
+    number: '04',
     name: 'Blanqueamiento',
     description:
       'Aclaramiento del tono dental bajo supervisión profesional, preservando la salud del esmalte.',
@@ -48,29 +40,28 @@ export const treatments: Treatment[] = [
   },
   {
     id: 'rehabilitacion-oral',
-    number: '06',
+    number: '05',
     name: 'Rehabilitación oral',
-    description:
-      'Planes integrales para recuperar la función y la estética cuando intervienen varias especialidades.',
+    description: 'Planes integrales para recuperar la función y la estética.',
     reason: 'Rehabilitación oral',
   },
   {
     id: 'endodoncia',
-    number: '07',
+    number: '06',
     name: 'Endodoncia',
     description: 'Tratamientos de conducto orientados a conservar la pieza dental propia.',
     reason: 'Endodoncia',
   },
   {
     id: 'periodoncia',
-    number: '08',
+    number: '07',
     name: 'Periodoncia',
     description: 'Diagnóstico y tratamiento de las encías y de los tejidos que sostienen los dientes.',
     reason: 'Periodoncia',
   },
   {
     id: 'cirugia-maxilofacial',
-    number: '09',
+    number: '08',
     name: 'Cirugía maxilofacial',
     description: 'Extracciones complejas, terceros molares y procedimientos de cirugía oral.',
     reason: 'Cirugía maxilofacial',
